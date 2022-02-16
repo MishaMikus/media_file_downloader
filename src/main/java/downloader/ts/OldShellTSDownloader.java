@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShellTSDownloader {
+public class OldShellTSDownloader {
 
     public static void main(String[] args) throws IOException {
         nerklq();

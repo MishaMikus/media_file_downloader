@@ -17,6 +17,9 @@ import java.util.stream.IntStream;
 
 public class UakinoDownloader extends Downloader {
 
+    //Example
+    //https://uakino.club/cartoon/features/116-ratatuy.html
+
     private static final Logger LOGGER = LogManager.getLogger(UakinoDownloader.class);
 @Override
      public void download(String movieURL) throws IOException, InterruptedException, URISyntaxException {
@@ -67,8 +70,7 @@ public class UakinoDownloader extends Downloader {
         });
 
     }
-
-
+    
     private static List<String> makeSegmentFileList(String movieFile, String bestResolutionFileIndex) {
         List<String> res=new ArrayList<>();
         String prefix=movieFile.split("index")[0];
@@ -92,7 +94,7 @@ public class UakinoDownloader extends Downloader {
     }
 
     private static String parseBestResolutionFileIndex(String movieSourcePage) {
-        LOGGER.info(movieSourcePage);
+        //LOGGER.info(movieSourcePage);
         String res=movieSourcePage.split("\\./")[1].split("#")[0].trim();
         LOGGER.info("PARSE "+res);
         return res;

@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class FoReadDownloader extends Downloader {
+
+    //Example
+    //https://4read.org/668-marya-matos-solodka-darusya.html
+
     private static final Logger LOGGER = LogManager.getLogger(FoReadDownloader.class);
     @Override
     protected void download(String movieURL) throws IOException, InterruptedException, URISyntaxException {
@@ -72,6 +76,5 @@ public class FoReadDownloader extends Downloader {
         String res=bookPage.split("\"og:title\" content=\"")[1].split("\"")[0].replaceAll(" ","_");
         LOGGER.info("PARSE "+res);
         return res;
-
     }
 }
