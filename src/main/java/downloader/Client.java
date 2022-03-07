@@ -11,8 +11,7 @@ public class Client {
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
         LOGGER.info("Client start");
 
-        new SiteFactory("https://uakino.club/cartoon/11263-trol-2-svtove-turne.html").download();
+        new SiteFactory("https://uakino.club/cartoon/1944-ruffalo.html").download();
 
-        //https://4read.org/2341-bredbery-rey-marsyansky-hronyki.html
     }
 }

@@ -83,40 +83,49 @@ public class UakinoDownloader extends Downloader {
                         itIsFirstRow.set(false);}
                 }
         );
-        LOGGER.info("PARSE "+res.size()+" rows");
+        LOGGER.info("PARSE parseMovieName "+res.size()+" rows");
         return res;
     }
 
     private static String buildBestResolutionFileIndexFileName(String movieFile, String bestResolutionFileIndex) {
         String res=movieFile.split("/hls/")[0]+"/hls/"+bestResolutionFileIndex;
-        LOGGER.info("PARSE "+res);
+        LOGGER.info("PARSE buildBestResolutionFileIndexFileName "+res);
         return res;
     }
 
     private static String parseBestResolutionFileIndex(String movieSourcePage) {
         //LOGGER.info(movieSourcePage);
         String res=movieSourcePage.split("\\./")[1].split("#")[0].trim();
-        LOGGER.info("PARSE "+res);
+        LOGGER.info("PARSE parseBestResolutionFileIndex "+res);
         return res;
     }
 
     private static String parseMovieFile(String movieSourcePage) {
-        //System.out.println(movieSourcePage);
-        String res=movieSourcePage.split("file:\"")[1].split("\"")[0];
-        LOGGER.info("PARSE "+res);
+        if(movieSourcePage.contains("Змініть країну перегляду")) {
+            LOGGER.warn("please use Ukrainian VPN");
+        }
+        String res="";
+        LOGGER.info("TRY PARSE parseMovieFile");
+        try{
+         res=movieSourcePage.split("file:\"")[1].split("\"")[0];
+        LOGGER.info("PARSE parseMovieFile "+res);
+        }catch (Exception e){
+            System.err.println("can't parse "+movieSourcePage);
+            e.printStackTrace();
+        }
         return res;
     }
 
     private static String parseMovieSourceURL(String moviePage) {
         String res=moviePage.split("iframe id=\"pre\"")[1].split("src=\"")[1].split("\"")[0];
-        LOGGER.info("PARSE "+res);
+        LOGGER.info("PARSE parseMovieSourceURL "+res);
         return res;
     }
 
     private static String parseMovieName(String moviePage) {
         String res=moviePage.split("origintitle")[1].split("<i>")[1].split("</i>")[0]
                 .replaceAll(" ","_");
-        LOGGER.info("PARSE "+res);
+        LOGGER.info("PARSE parseMovieName "+res);
         return res;
     }
 
